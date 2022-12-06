@@ -13,14 +13,14 @@ namespace PackTracker.View
     internal class PackNameConverter : IValueConverter
     {
         private static Config _config = Config.Instance;
-        internal static Dictionary<int, Dictionary<Locale, string>> PackNames;
+        internal static Dictionary<int, Dictionary<string, string>> PackNames;
         static PackNameConverter()
         {
             using (var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("PackTracker.Resources.packs.json"))
             {
                 using (var sr = new StreamReader(s))
                 {
-                    PackNames = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<Locale, string>>>(sr.ReadToEnd());
+                    PackNames = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<string, string>>>(sr.ReadToEnd());
                 }
             }
         }
@@ -34,20 +34,11 @@ namespace PackTracker.View
 
             if (int.TryParse(value.ToString(), out var id))
             {
-                if (Enum.TryParse(_config.SelectedLanguage, out Locale lang))
-                {
-                    var converted = Convert(id, lang);
-                    if (!string.IsNullOrEmpty(converted))
-                    {
-                        return converted;
-                    }
-                }
-
                 if (PackNames.ContainsKey(id))
                 {
-                    if (PackNames[id].ContainsKey(Locale.enUS))
+                    if (PackNames[id].ContainsKey("enUS"))
                     {
-                        return PackNames[id][Locale.enUS];
+                        return PackNames[id]["enUS"];
                     }
                 }
             }
@@ -55,25 +46,11 @@ namespace PackTracker.View
             return value;
         }
 
-        public static string Convert(int packId, Locale lang = Locale.UNKNOWN)
+        public static string Convert(int packId, string lang="enUS")
         {
             if (PackNames.ContainsKey(packId))
             {
-                switch (lang)
-                {
-                    case Locale.UNKNOWN:
-                    {
-                        if (Enum.TryParse(_config.SelectedLanguage, out Locale defaultLang))
-                        {
-                            return PackNames[packId][defaultLang];
-                        }
-                        break;
-                    }
-                    default:
-                    {
-                        return PackNames[packId].ContainsKey(lang) ? PackNames[packId][lang] : PackNames[packId][Locale.enUS];
-                    }
-                }
+                return PackNames[packId].ContainsKey(lang) ? PackNames[packId][lang] : PackNames[packId]["enUS"];
             }
 
             return null;

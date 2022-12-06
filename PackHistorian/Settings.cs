@@ -8,5 +8,7 @@
         public bool ShowUntracked { get; set; } = true;
         public bool GoldenResetRegularPityTimer { get; set; } = false;
         public bool RightmostPityTimerOverlay { get; set; } = true;
+        public string PTCookie { get; set; } = "";
+        public string PTAuth { get; set; } = "";
     }
 }

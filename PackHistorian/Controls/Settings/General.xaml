@@ -19,6 +19,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Content="Spoil" Target="{Binding ElementName=sw_Spoil}" ToolTip="Shows a pack's content when it's opened" />
@@ -35,5 +37,11 @@
 
         <Label Grid.Column="0" Grid.Row="4" Content="Rightmost Overlay" Target="{Binding ElementName=sw_Rightmost}" ToolTip="Pity timer overlay position (rightmost or inside the game)" />
         <metro:ToggleSwitchButton Grid.Column="1" Grid.Row="4" Name="sw_Rightmost" IsChecked="{Binding RightmostPityTimerOverlay, Mode=TwoWay}" HorizontalAlignment="Right" />
+        <Label Grid.Column="0" Grid.Row="5" Content="Cookie" Target="{Binding ElementName=sw_Cookie}" ToolTip="Use the network tab in devtools to find this." />
+        <TextBox Grid.Column="1" Grid.Row="5" Name="sw_Cookie" MaxWidth="150" Text="{Binding PTCookie, Mode=TwoWay}"/>
+        <Label Grid.Column="0" Grid.Row="6" Content="Auth Token" Target="{Binding ElementName=sw_Token}" ToolTip="Use the network tab in devtools to find this." />
+        <TextBox Grid.Column="1" Grid.Row="6" Name="sw_Token" MaxWidth="150" Text="{Binding PTAuth, Mode=TwoWay}"/>
+   
+    
     </Grid>
 </metro:MetroContentControl>

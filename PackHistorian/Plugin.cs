@@ -20,6 +20,7 @@ namespace PackTracker
         private WindowManager _windows = new WindowManager(_name);
         private View.AverageCollection _averageCollection;
         private View.Cache.PityTimerRepository _pityTimers;
+        private PityTrackerUploader _ptUploader;
 
         public static Version CurrentVersion { get; } = new Version("1.4.15");
 
@@ -27,6 +28,7 @@ namespace PackTracker
         {
             this._watcher = new PackWatcher();
             this._updater = new Updater();
+            this._ptUploader = new PityTrackerUploader();
 
             try
             {
@@ -54,7 +56,7 @@ namespace PackTracker
             {
                 this._history.Add(e.Pack);
                 this._historyStorage.Store(this._history.Ascending);
-
+                _ptUploader.UploadPack(this._settings.PTCookie, this._settings.PTAuth, e.Pack);
                 if (this._settings.Spoil)
                 {
                     var Average = this._averageCollection.FindForPackId(e.Pack.Id);
@@ -88,7 +90,7 @@ namespace PackTracker
                 Menu.mnu_Log.Click += (sender, e) => this._windows.ShowLogWin(this._history);
                 Menu.mnu_Search.Click += (sender, e) => this._windows.ShowSearchWin(this._history);
                 Menu.mnu_PityTimers.Click += (sender, e) => this._windows.ShowPityWin(this._settings, this._history, this._pityTimers);
-                Menu.mnu_ManualInsert.Click += (sender, e) => this._windows.ShowManualInsertWin(this._history);
+                var test = this._history.Last();
                 return Menu;
             }
         }
