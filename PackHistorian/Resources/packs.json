@@ -974,7 +974,8 @@
         "plPL": "Pochód Króla Lisza",
         "ptPT": "Ascensão do Lich Rei",
         "jaJP": "リッチキングの凱旋",
-        "thTH": "March of the Lich King"
+      "thTH": "March of the Lich King",
+      "short":  "MLK"
     },
     "904": {
         "enUS": "Golden Wild",
