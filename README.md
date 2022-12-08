@@ -1,3 +1,6 @@
+## Fork that adds pitytracker.com integration.
+
+
 # PackTracker [![Github All Downloads](https://img.shields.io/github/downloads/sgkoishi/packtracker/total.svg)](https://github.com/sgkoishi/packtracker/releases)
 Plugin for [HearthstoneDeckTracker](https://hsdecktracker.net/)
 
