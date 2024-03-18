@@ -1,28 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using Hearthstone_Deck_Tracker;
 using Hearthstone_Deck_Tracker.Hearthstone;
-using Newtonsoft.Json.Linq;
 using PackTracker.Entity;
 using System.IO;
-using System.Xml;
-using PackTracker.View;
 using System.Linq;
 using Rarity = HearthDb.Enums.Rarity;
 using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Reflection;
+using Newtonsoft.Json.Linq;
 
 namespace PackTracker.Storage {
     internal class PityTrackerUploader : IPityTrackerUploader {
 
+        internal static Dictionary<int, string> shortCodes;
+        static PityTrackerUploader()
+        {
+
+
+            using var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("PackTracker.Resources.pitytracker-shortcodes.json");
+            using var sr = new StreamReader(s);
+            shortCodes = JsonConvert.DeserializeObject<JObject>(sr.ReadToEnd()).ToObject<Dictionary<int, string>>();
+        }
+
+        public static string GetShortCode(int packID)
+        {
+            if (shortCodes.ContainsKey(packID))
+            {
+                return shortCodes[packID];
+            }
+            return null;
+        }
+
         private Dictionary<string, string> PackToDict(Pack Pack) {
-            Dictionary<Rarity, string> types = new Dictionary<Rarity, string>{
+            Dictionary<Rarity, string> types = new()
+            {
                 {Rarity.COMMON,"commons" },
                 {Rarity.RARE, "rares" },
                 {Rarity.EPIC, "epics" },
                 {Rarity.LEGENDARY, "legendaries" }
             };
-            Dictionary<string, int> count = new Dictionary<string, int>();
+            Dictionary<string, int> count = [];
             foreach (var t in types.Values) {
                 count[t] = 0;
                 count[$"golden_{t}"] = 0;
@@ -37,6 +56,11 @@ namespace PackTracker.Storage {
 
 
         public async void UploadPack(string Cookie, string AuthToken, Pack Pack) {
+            var shortCode = GetShortCode(Pack.Id);
+            if (shortCode is null)
+            {
+                return;
+            }
             if (Pack is null) return;
             var client = new HttpClient(new HttpClientHandler{ UseCookies = false });
             var req = new HttpRequestMessage(HttpMethod.Post, new Uri("https://pitytracker.com/packs"));
@@ -48,10 +72,10 @@ namespace PackTracker.Storage {
                 {"authenticity_token", AuthToken},
                 {"pack[region]", "Europe"},
                 {"pack[reward_type]", "na"},
-                {"pack[set_type]", PackNameConverter.Convert(Pack.Id, "short")},
+                {"pack[set_type]", shortCode},
                 {"commit", "Add+Pack"}
             }.Concat(PackToDict(Pack)));
-            HttpResponseMessage resp = await client.SendAsync(req);
+            await client.SendAsync(req);
         }
     }
 }

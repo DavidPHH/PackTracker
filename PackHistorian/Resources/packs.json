@@ -33,8 +33,7 @@
     "plPL": "Gobliny vs Gnomy",
     "ptPT": "Goblins vs Gnomos",
     "jaJP": "ゴブリンvsノーム",
-    "thTH": "Goblins vs Gnomes",
-    "short": "GvG"
+    "thTH": "Goblins vs Gnomes"
   },
   "10": {
     "enUS": "The Grand Tournament",
@@ -52,8 +51,25 @@
     "plPL": "Wielki Turniej",
     "ptPT": "O Grande Torneio",
     "jaJP": "グランド・トーナメント",
-    "thTH": "The Grand Tournament",
-    "short": "TGT"
+    "thTH": "The Grand Tournament"
+  },
+  "11": {
+    "enUS": "Whispers of the Old Gods",
+    "enGB": "Whispers of the Old Gods",
+    "frFR": "Murmures des Dieux très anciens",
+    "deDE": "Das Flüstern der Alten Götter",
+    "koKR": "고대 신의 속삭임",
+    "esES": "Susurros de los Dioses Antiguos",
+    "esMX": "Susurros de los Dioses Antiguos",
+    "ruRU": "Пробуждение древних богов",
+    "zhTW": "古神碎碎念",
+    "zhCN": "上古之神的低语",
+    "itIT": "Sussurri degli Dei Antichi",
+    "ptBR": "Sussurros dos Deuses Antigos",
+    "plPL": "Przedwieczni Bogowie",
+    "ptPT": "Sussurros dos Deuses Antigos",
+    "jaJP": "旧神のささやき",
+    "thTH": "Whispers of the Old Gods"
   },
   "18": {
     "enUS": "Classic",
@@ -89,8 +105,7 @@
     "plPL": "Ciemne zaułki Gadżetonu",
     "ptPT": "Gangues de Geringontzan",
     "jaJP": "仁義なきガジェッツァン",
-    "thTH": "Mean Streets of Gadgetzan",
-    "short": "MSG"
+    "thTH": "Mean Streets of Gadgetzan"
   },
   "20": {
     "enUS": "Journey to Un'Goro",
@@ -108,8 +123,7 @@
     "plPL": "Podróż do wnętrza Un'Goro",
     "ptPT": "Jornada a Un'Goro",
     "jaJP": "大魔境ウンゴロ",
-    "thTH": "Journey to Un'Goro",
-    "short": "UNG"
+    "thTH": "Journey to Un'Goro"
   },
   "21": {
     "enUS": "Knights of the Frozen Throne",
@@ -127,8 +141,7 @@
     "plPL": "Rycerze Mroźnego Tronu",
     "ptPT": "Cavaleiros do Trono de Gelo",
     "jaJP": "凍てつく玉座の騎士団",
-    "thTH": "Knights of the Frozen Throne",
-    "short": "KFT"
+    "thTH": "Knights of the Frozen Throne"
   },
   "23": {
     "enUS": "Golden Classic",
@@ -146,8 +159,7 @@
     "plPL": "Złote klasyczne",
     "ptPT": "Clássico Dourado",
     "jaJP": "ゴールデンクラシック",
-    "thTH": "คลาสสิคสีทอง",
-    "short": "GC"
+    "thTH": "คลาสสิคสีทอง"
   },
   "30": {
     "enUS": "Kobolds & Catacombs",
@@ -165,8 +177,7 @@
     "plPL": "Koboldy i katakumby",
     "ptPT": "Kobolds & Catacumbas",
     "jaJP": "コボルトと秘宝の迷宮",
-    "thTH": "Kobolds & Catacombs",
-    "short": "Kobolds"
+    "thTH": "Kobolds & Catacombs"
   },
   "31": {
     "enUS": "The Witchwood",
@@ -184,8 +195,7 @@
     "plPL": "Wiedźmi Las",
     "ptPT": "Bosque das Bruxas",
     "jaJP": "妖の森ウィッチウッド",
-    "thTH": "The Witchwood",
-    "short": "WW"
+    "thTH": "The Witchwood"
   },
   "38": {
     "enUS": "The Boomsday Project",
@@ -203,8 +213,7 @@
     "plPL": "Projekt Hukatomba",
     "ptPT": "Projeto Cabum",
     "jaJP": "博士のメカメカ大作戦",
-    "thTH": "The Boomsday Project",
-    "short": "BDP"
+    "thTH": "The Boomsday Project"
   },
   "40": {
     "enUS": "Rastakhan's Rumble",
@@ -222,8 +231,7 @@
     "plPL": "Rozróba Rastakana",
     "ptPT": "Ringue do Rastakhan",
     "jaJP": "天下一ヴドゥ祭",
-    "thTH": "Rastakhan's Rumble",
-    "short": "RASTA"
+    "thTH": "Rastakhan's Rumble"
   },
   "49": {
     "enUS": "Rise of Shadows",
@@ -241,8 +249,7 @@
     "plPL": "Wyjście z cienia",
     "ptPT": "Ascensão das Sombras",
     "jaJP": "爆誕！悪党同盟",
-    "thTH": "Rise of Shadows",
-    "short": "RoS"
+    "thTH": "Rise of Shadows"
   },
   "128": {
     "enUS": "Saviors of Uldum",
@@ -260,8 +267,7 @@
     "plPL": "Wybawcy Uldum",
     "ptPT": "Salvadores de Uldum",
     "jaJP": "突撃！探検同盟",
-    "thTH": "Saviors of Uldum",
-    "short": "Uldum"
+    "thTH": "Saviors of Uldum"
   },
   "347": {
     "enUS": "Descent of Dragons",
@@ -279,8 +285,7 @@
     "plPL": "Wejście smoków",
     "ptPT": "Despontar dos Dragões",
     "jaJP": "激闘！ドラゴン大決戦",
-    "thTH": "Descent of Dragons",
-    "short": "DoD"
+    "thTH": "Descent of Dragons"
   },
   "423": {
     "enUS": "Ashes of Outland",
@@ -298,8 +303,7 @@
     "plPL": "Popioły Rubieży",
     "ptPT": "Cinzas de Terralém",
     "jaJP": "灰に舞う降魔の狩人",
-    "thTH": "Ashes of Outland",
-    "short": "Outland"
+    "thTH": "Ashes of Outland"
   },
   "468": {
     "enUS": "Scholomance Academy",
@@ -317,8 +321,7 @@
     "plPL": "Scholomancjum",
     "ptPT": "Universidade de Scolomântia",
     "jaJP": "魔法学院スクロマンス",
-    "thTH": "Scholomance Academy",
-    "short": "SA"
+    "thTH": "Scholomance Academy"
   },
   "470": {
     "enUS": "Standard Hunter Card Pack",
@@ -390,8 +393,7 @@
     "plPL": "Zahartowani przez Pustkowia",
     "ptPT": "Forjado nos Sertões",
     "jaJP": "荒ぶる大地の強者たち",
-    "thTH": "Forged in the Barrens",
-    "short": "Barrens"
+    "thTH": "Forged in the Barrens"
   },
   "602": {
     "enUS": "United in Stormwind",
@@ -409,8 +411,7 @@
     "plPL": "Zjednoczeni w Wichrogrodzie",
     "ptPT": "Juntos em Ventobravo",
     "jaJP": "風集うストームウィンド",
-    "thTH": "United in Stormwind",
-    "short": "Stormwind"
+    "thTH": "United in Stormwind"
   },
   "603": {
     "enUS": "Golden Scholomance Academy",
@@ -428,8 +429,7 @@
     "plPL": "Złote Scholomancjum",
     "ptPT": "Universidade de Scolomântia Dourado",
     "jaJP": "ゴールデン魔法学院スクロマンス",
-    "thTH": "Scholomance Academy สีทอง",
-    "short": "SA"
+    "thTH": "Scholomance Academy สีทอง"
   },
   "616": {
     "enUS": "Madness at the Darkmoon Faire",
@@ -447,8 +447,7 @@
     "plPL": "Obłędny Festyn Lunomroku",
     "ptPT": "Delírios em Negraluna",
     "jaJP": "ダークムーン・フェアへの招待状",
-    "thTH": "Madness at the Darkmoon Faire",
-    "short": "DMF"
+    "thTH": "Madness at the Darkmoon Faire"
   },
   "629": {
     "enUS": "Mercenaries Pack",
@@ -772,8 +771,7 @@
     "plPL": "Morderstwo w twierdzy Nathria",
     "ptPT": "Assassinato no Castelo de Nathria",
     "jaJP": "ナスリア城殺人事件",
-    "thTH": "Murder at Castle Nathria",
-    "short": "MCN"
+    "thTH": "Murder at Castle Nathria"
   },
   "737": {
     "enUS": "Golden United in Stormwind",
@@ -827,8 +825,7 @@
     "plPL": "Pochód Króla Lisza",
     "ptPT": "Ascensão do Lich Rei",
     "jaJP": "リッチキングの凱旋",
-    "thTH": "March of the Lich King",
-    "short": "MLK"
+    "thTH": "March of the Lich King"
   },
   "841": {
     "enUS": "Golden Fractured in Alterac Valley",

@@ -19,7 +19,7 @@ namespace PackTracker.View
             {
                 using (var sr = new StreamReader(s))
                 {
-                    PackNames = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<string, string>>>(sr.ReadToEnd());
+                    PackNames = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<Locale, string>>>(sr.ReadToEnd());
                 }
             }
         }
@@ -39,24 +39,24 @@ namespace PackTracker.View
             return value;
         }
 
-        public static string Convert(int packId, string lang="enUS")
+        public static string Convert(int packId, Locale lang = Locale.UNKNOWN)
         {
             if (PackNames.ContainsKey(packId))
             {
                 switch (lang)
                 {
                     case Locale.UNKNOWN:
-                    {
-                        if (Enum.TryParse(Config.Instance.SelectedLanguage, out Locale defaultLang))
                         {
-                            return $"{PackNames[packId][defaultLang]} ({packId})";
+                            if (Enum.TryParse(Config.Instance.SelectedLanguage, out Locale defaultLang))
+                            {
+                                return $"{PackNames[packId][defaultLang]} ({packId})";
+                            }
+                            break;
                         }
-                        break;
-                    }
                     default:
-                    {
-                        return $"{(PackNames[packId].ContainsKey(lang) ? PackNames[packId][lang] : PackNames[packId][Locale.enUS])} ({packId})";
-                    }
+                        {
+                            return $"{(PackNames[packId].ContainsKey(lang) ? PackNames[packId][lang] : PackNames[packId][Locale.enUS])} ({packId})";
+                        }
                 }
             }
 

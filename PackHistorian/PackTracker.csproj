@@ -13,7 +13,7 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-	<LangVersion>latest</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,43 +52,42 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HearthDb">
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\HearthDb.dll</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\HearthDb.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HearthMirror">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\HearthMirror.dll</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\HearthMirror.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HearthstoneDeckTracker">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\HearthstoneDeckTracker.exe</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\HearthstoneDeckTracker.exe</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="HearthWatcher">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\HearthWatcher.dll</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\HearthWatcher.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="LiveCharts">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\LiveCharts.dll</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\LiveCharts.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="LiveCharts.Wpf">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\LiveCharts.Wpf.dll</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\LiveCharts.Wpf.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MahApps.Metro">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\MahApps.Metro.dll</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\MahApps.Metro.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -109,7 +108,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="XAMLMarkupExtensions">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\David\AppData\Local\HearthstoneDeckTracker\app-1.19.2\XAMLMarkupExtensions.dll</HintPath>
+      <HintPath>$(UserProfile)\AppData\Local\HearthstoneDeckTracker\app-1.24.9\XAMLMarkupExtensions.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -328,10 +327,10 @@
     <EmbeddedResource Include="Resources\packs.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <EmbeddedResource Include="Resources\pitytracker-shortcodes.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetDir)" "C:\Users\David\AppData\Roaming\HearthstoneDeckTracker\Plugins\PackTracker"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetDir)\PackTracker.dll" "%25AppData%25\HearthstoneDeckTracker\Plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>
