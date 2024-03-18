@@ -9,12 +9,17 @@
 >
 
     <StackPanel Margin="10 5" Orientation="Horizontal">
-        <ComboBox MinWidth="256" ItemsSource="{Binding SetHdtCards, ElementName=UcCardSelector}" SelectedItem="{Binding HDTCard}">
-            <ItemsControl.ItemTemplate>
+        <ComboBox MinWidth="256" ItemsSource="{Binding SetHdtCards, ElementName=UcCardSelector}" SelectedItem="{Binding HDTCard}" VirtualizingPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.CanContentScroll="True">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+            <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <controls:Card />
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
+            </ComboBox.ItemTemplate>
         </ComboBox>
         <CheckBox IsChecked="{Binding Premium}" Content="Golden" Margin="10" VerticalAlignment="Center"></CheckBox>
     </StackPanel>

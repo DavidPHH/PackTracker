@@ -30,16 +30,16 @@ namespace PackTracker.Controls.PityTimer
             if (History.Count > 0)
             {
                 this.PackId = History.Last().Id;
-                this.Chart_Epic.DataContext = PityTimers.GetPityTimer((int)this.PackId, Rarity.EPIC, false, true);
-                this.Chart_Leg.DataContext = PityTimers.GetPityTimer((int)this.PackId, Rarity.LEGENDARY, false, true);
+                this.Chart_Epic.DataContext = PityTimers.GetPityTimer((int)this.PackId, Rarity.EPIC, true);
+                this.Chart_Leg.DataContext = PityTimers.GetPityTimer((int)this.PackId, Rarity.LEGENDARY, true);
             }
 
             History.CollectionChanged += (sender, e) =>
             {
                 foreach (Pack Pack in e.NewItems)
                 {
-                    this.Chart_Epic.DataContext = PityTimers.GetPityTimer(Pack.Id, Rarity.EPIC, false, true);
-                    this.Chart_Leg.DataContext = PityTimers.GetPityTimer(Pack.Id, Rarity.LEGENDARY, false, true);
+                    this.Chart_Epic.DataContext = PityTimers.GetPityTimer(Pack.Id, Rarity.EPIC, true);
+                    this.Chart_Leg.DataContext = PityTimers.GetPityTimer(Pack.Id, Rarity.LEGENDARY, true);
                     this.PackId = Pack.Id;
                 }
 

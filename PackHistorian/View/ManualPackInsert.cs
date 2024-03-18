@@ -80,14 +80,13 @@ namespace PackTracker.View
 
         private readonly Dictionary<int, List<HDTCard>> _setsCache = new Dictionary<int, List<HDTCard>>();
 
-        private static readonly List<int> _golden = new List<int> { 23, 603, 643, 686 };
+        internal static readonly List<int> GoldenPacks = new List<int> { 23, 603, 643, 686, 716, 737, 841, 850, 874, 904, 921, 932, 937, 938, 939, 952 };
         private static readonly Dictionary<int, Func<HearthDb.Card, bool>> _filter = new Dictionary<int, Func<HearthDb.Card, bool>>
         {
             [1] = card => card.Set == CardSet.EXPERT1,
             [9] = card => card.Set == CardSet.GVG,
             [10] = card => card.Set == CardSet.TGT,
             [11] = card => card.Set == CardSet.OG,
-            [17] = card => card.Set == CardSet.EXPERT1,
             [18] = card => card.Set == CardSet.EXPERT1,
             [19] = card => card.Set == CardSet.GANGS,
             [20] = card => card.Set == CardSet.UNGORO,
@@ -100,7 +99,6 @@ namespace PackTracker.View
             [41] = card => card.Set == CardSet.UNGORO || card.Set == CardSet.ICECROWN || card.Set == CardSet.LOOTAPALOOZA,
             [49] = card => card.Set == CardSet.DALARAN,
             [128] = card => card.Set == CardSet.ULDUM,
-            [181] = card => card.Set == CardSet.EXPERT1,
             [347] = card => card.Set == CardSet.DRAGONS,
             [423] = card => card.Set == CardSet.BLACK_TEMPLE,
             [465] = card => card.Set == CardSet.EXPERT1,
@@ -129,16 +127,24 @@ namespace PackTracker.View
             [713] = _ => true, // Golden Standard, may change over time
             [713] = _ => true, // Standard, may change over time
             [714] = _ => true, // Wild, may change over time
-            [722] = card => card.Rarity == HearthDb.Enums.Rarity.EPIC, // Epic Packs, not sure what's inside
             [729] = card => card.Set == CardSet.REVENDRETH,
             [737] = card => card.Set == CardSet.STORMWIND,
+            [819] = card => card.Set == CardSet.TITANS,
             [821] = card => card.Set == CardSet.RETURN_OF_THE_LICH_KING,
             [841] = card => card.Set == CardSet.ALTERAC_VALLEY,
             [850] = card => card.Set == CardSet.THE_SUNKEN_CITY,
+            [854] = card => card.Set == CardSet.BATTLE_OF_THE_BANDS,
             [874] = card => card.Set == CardSet.REVENDRETH,
             [904] = _ => true, // Golden Wild, may change over time
             [918] = card => card.Class == CardClass.DEATHKNIGHT && (int)card.Set > (int)CardSet.TROLL,
             [921] = card => card.Set == CardSet.RETURN_OF_THE_LICH_KING,
+            [922] = card => card.Set == CardSet.WONDERS,
+            [932] = card => card.Set == CardSet.BATTLE_OF_THE_BANDS,
+            [937] = card => card.Set == CardSet.TITANS,
+            [938] = card => card.Set == CardSet.BLACK_TEMPLE || card.Set == CardSet.SCHOLOMANCE || card.Set == CardSet.DARKMOON_FAIRE,
+            [939] = card => card.Set == CardSet.BLACK_TEMPLE,
+            [944] = card => card.Set == CardSet.WILD_WEST,
+            [952] = card => card.Set == CardSet.WONDERS,
         };
 
         public ManualPackInsert()
@@ -225,7 +231,7 @@ namespace PackTracker.View
             {
                 this.OnPropertyChanged(nameof(this.AddNewPackEnabled));
             }
-            if (_golden.Contains(this.SelectedSet))
+            if (GoldenPacks.Contains(this.SelectedSet))
             {
                 foreach (var item in this.PackCards)
                 {

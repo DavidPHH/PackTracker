@@ -22,7 +22,7 @@ namespace PackTracker
         private View.Cache.PityTimerRepository _pityTimers;
         private PityTrackerUploader _ptUploader;
 
-        public static Version CurrentVersion { get; } = new Version("1.4.15");
+        public static Version CurrentVersion { get; } = new Version("1.4.19");
 
         public Plugin()
         {

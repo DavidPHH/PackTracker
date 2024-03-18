@@ -21,12 +21,12 @@ namespace PackTracker.Controls.PityTimer
             {
                 if (e.AddedItems.Count == 1)
                 {
-                    this.Ep_Prev.DataContext = this.Ep_Label.DataContext = this._pityTimers.GetPityTimer((int)e.AddedItems[0], Rarity.EPIC, false, true);
-                    this.Leg_Prev.DataContext = this.Leg_Label.DataContext = this._pityTimers.GetPityTimer((int)e.AddedItems[0], Rarity.LEGENDARY, false, true);
+                    var packId = (int) e.AddedItems[0];
+                    this.Ep_Prev.DataContext = this.Ep_Label.DataContext = this._pityTimers.GetPityTimer(packId, Rarity.EPIC, true);
+                    this.Leg_Prev.DataContext = this.Leg_Label.DataContext = this._pityTimers.GetPityTimer(packId, Rarity.LEGENDARY, true);
                 }
             };
 
-            this.dd_Packs.ShowUntracked = settings.ShowUntracked;
             Loaded += (sender, e) => this.dd_Packs.DataContext = History;
         }
     }

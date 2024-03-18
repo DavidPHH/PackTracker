@@ -7,6 +7,8 @@ using PackTracker.Event;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace PackTracker
 {
@@ -127,7 +129,7 @@ namespace PackTracker
             var monoObject = typeof(HearthMirror.Reflection).Invoke("GetService", "NetCache")
                 .HearthMirrorGet("m_netCache")?.HearthMirrorGet("valueSlots");
 
-            if (!(monoObject is object[] ie))
+            if (monoObject is not object[] ie)
             {
                 return null;
             }
@@ -142,36 +144,58 @@ namespace PackTracker
             return null;
         }
 
-        public static Dictionary<int, int> UpdateGranted()
+        public static void UpdateGranted()
         {
             try
             {
                 var boosterServices = GetNetCacheService("NetCacheBoosters");
-                var stacks = boosterServices?.HearthMirrorGet("<BoosterStacks>k__BackingField");
+                var stacks = boosterServices?.HearthMirrorGet("BoosterStacks");
                 var items = stacks?.HearthMirrorGet("_items");
 
-                if (!(items is object[] array))
+                if (items is not object[] array)
                 {
-                    return null;
+                    return;
                 }
 
                 var newdict = new Dictionary<int, int>();
-                foreach (var item in array)
+                try
                 {
-                    if (item != null)
+                    foreach (var item in array)
                     {
-                        var id = (int)item.HearthMirrorGet("<Id>k__BackingField");
-                        var granted = (int)item.HearthMirrorGet("<EverGrantedCount>k__BackingField");
-                        newdict.Add(id, granted);
+                        try
+                        {
+                            if (item != null)
+                            {
+                                var id = (int) item.HearthMirrorGet("Id");
+                                var obtained = (int) item.HearthMirrorGet("EverGrantedCount");
+                                newdict.Add(id, obtained);
+                            }
+                        }
+                        catch
+                        {
+                        }
                     }
                 }
+                catch
+                {
+                }
 
-                return newdict;
+                foreach (var kvp in newdict)
+                {
+                    if (kvp.Value > 0)
+                    {
+                        Controls.Statistic.obtained[kvp.Key] = kvp.Value;
+                    }
+                    else if (Controls.Statistic.obtained.ContainsKey(kvp.Key))
+                    {
+                        Controls.Statistic.obtained.Remove(kvp.Key);
+                    }
+                }
             }
             catch
             {
                 // Game not launched, failed, etc.
-                return null;
+                return;
             }
         }
     }
