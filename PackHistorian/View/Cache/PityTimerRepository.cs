@@ -16,8 +16,9 @@ namespace PackTracker.View.Cache
             this._settings = settings;
         }
 
-        public PityTimer GetPityTimer(int packId, Rarity rarity, bool premium, bool skipFirst)
+        public PityTimer GetPityTimer(int packId, Rarity rarity, bool skipFirst)
         {
+            var premium = ManualPackInsert.GoldenPacks.Contains(packId);
             var pt = this._cache.FirstOrDefault(x => x.PackId == packId && x.Rarity == rarity && x.Premium == premium && x.SkipFirst == skipFirst);
             if (!(pt is PityTimer))
             {

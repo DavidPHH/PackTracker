@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace PackTracker.Controls
 {
@@ -7,6 +8,7 @@ namespace PackTracker.Controls
     /// </summary>
     public partial class Statistic
     {
+        public static Dictionary<int, int> obtained = new Dictionary<int, int>();
         public Statistic(PackTracker.History History, PackTracker.Settings settings)
         {
             this.InitializeComponent();
@@ -31,7 +33,6 @@ namespace PackTracker.Controls
                 }
             };
 
-            this.dd_Packs.ShowUntracked = settings.ShowUntracked;
             Loaded += (sender, e) => this.dd_Packs.DataContext = History;
             this.dd_Packs.Focus();
         }

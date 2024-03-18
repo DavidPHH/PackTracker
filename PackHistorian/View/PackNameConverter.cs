@@ -12,8 +12,7 @@ namespace PackTracker.View
 {
     internal class PackNameConverter : IValueConverter
     {
-        private static Config _config = Config.Instance;
-        internal static Dictionary<int, Dictionary<string, string>> PackNames;
+        internal static Dictionary<int, Dictionary<Locale, string>> PackNames;
         static PackNameConverter()
         {
             using (var s = Assembly.GetExecutingAssembly().GetManifestResourceStream("PackTracker.Resources.packs.json"))
@@ -34,13 +33,7 @@ namespace PackTracker.View
 
             if (int.TryParse(value.ToString(), out var id))
             {
-                if (PackNames.ContainsKey(id))
-                {
-                    if (PackNames[id].ContainsKey("enUS"))
-                    {
-                        return PackNames[id]["enUS"];
-                    }
-                }
+                return Convert(id);
             }
 
             return value;
@@ -50,7 +43,21 @@ namespace PackTracker.View
         {
             if (PackNames.ContainsKey(packId))
             {
-                return PackNames[packId].ContainsKey(lang) ? PackNames[packId][lang] : PackNames[packId]["enUS"];
+                switch (lang)
+                {
+                    case Locale.UNKNOWN:
+                    {
+                        if (Enum.TryParse(Config.Instance.SelectedLanguage, out Locale defaultLang))
+                        {
+                            return $"{PackNames[packId][defaultLang]} ({packId})";
+                        }
+                        break;
+                    }
+                    default:
+                    {
+                        return $"{(PackNames[packId].ContainsKey(lang) ? PackNames[packId][lang] : PackNames[packId][Locale.enUS])} ({packId})";
+                    }
+                }
             }
 
             return null;

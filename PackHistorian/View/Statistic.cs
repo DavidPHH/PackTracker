@@ -35,16 +35,14 @@ namespace PackTracker.View
         public double LegendaryCards => this._totalAmount == 0 ? 0 : (double)this.LegendaryAmount / this._totalAmount;
         public double LegendaryPacks => this._packs.Count == 0 ? 0 : (double)this._legendaryPacks / this._packs.Count;
 
-        public string TotalPacks => _everGranted.ContainsKey(this._packId)
-            ? _everGranted[this._packId] == this._packs.Count
+        public string TotalPacks => Controls.Statistic.obtained.ContainsKey(this._packId)
+            ? Controls.Statistic.obtained[this._packId] == this._packs.Count
                 ? $"{this._packs.Count} Packs (Tracked)"
-                : $"{this._packs.Count} Tracked / { _everGranted[this._packId]} Total"
+                : $"{this._packs.Count} Tracked / { Controls.Statistic.obtained[this._packId]} Total"
             : $"{this._packs.Count} Packs";
 
         public int EpicStreak { get; private set; } = 0;
         public int LegendaryStreak { get; private set; } = 0;
-
-        private static Dictionary<int, int> _everGranted = new Dictionary<int, int>();
 
         public Statistic(int packId, History History)
         {
@@ -57,14 +55,7 @@ namespace PackTracker.View
                 this.CountStreak(Pack);
             }
 
-            var grant = PackWatcher.UpdateGranted();
-            if (grant != null)
-            {
-                foreach (var kvp in grant)
-                {
-                    _everGranted[kvp.Key] = kvp.Value;
-                }
-            }
+            PackWatcher.UpdateGranted();
 
             History.CollectionChanged += (sender, e) =>
             {
@@ -111,14 +102,7 @@ namespace PackTracker.View
                     }
                 }
 
-                var dictionary = PackWatcher.UpdateGranted();
-                if (dictionary != null)
-                {
-                    foreach (var kvp in dictionary)
-                    {
-                        _everGranted[kvp.Key] = kvp.Value;
-                    }
-                }
+                PackWatcher.UpdateGranted();
             };
         }
 

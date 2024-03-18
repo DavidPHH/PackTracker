@@ -12,36 +12,23 @@ namespace PackTracker.Controls
 {
     public partial class PackDropDown : SplitButton
     {
-        private ObservableCollection<int> _dropDown;
-        internal bool ShowUntracked;
+        private ObservableCollection<int> _dropDown;    
+        private List<int> _allPackTypes;
 
         public PackDropDown()
         {
             this.InitializeComponent();
 
+            this._allPackTypes = new List<int>(PackNameConverter.PackNames.Keys);
             this._dropDown = new ObservableCollection<int>();
+            this.dd_Packs.ItemsSource = this._dropDown;
         }
 
         private void dd_Packs_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.ShowUntracked)
-            {
-                var legacy = new List<int>();
-                if (e.NewValue is PackTracker.History hist)
-                {
-                    legacy = hist.Select(h => h.Id).ToList();
-                }
-                this._dropDown = new ObservableCollection<int>(PackNameConverter.PackNames.Keys.Concat(legacy).Distinct().OrderBy(x => x));
-                this.dd_Packs.ItemsSource = this._dropDown;
-                this.dd_Packs.SelectedIndex = 0;
-                return;
-            }
-
-            this._dropDown.Clear();
-
             if (e.NewValue is PackTracker.History newhist)
             {
-                this._dropDown = new ObservableCollection<int>(newhist.Select(x => x.Id).Distinct().OrderBy(x => x));
+                this._dropDown = new ObservableCollection<int>(this._allPackTypes.Intersect(newhist.Select(p => p.Id).Concat(Statistic.obtained.Keys)).OrderBy(x => x));
                 this.dd_Packs.ItemsSource = this._dropDown;
                 newhist.CollectionChanged += this.DropDown_NewEntry;
             }
@@ -50,21 +37,7 @@ namespace PackTracker.Controls
             {
                 history.CollectionChanged -= this.DropDown_NewEntry;
             }
-
-            if (this._dropDown.Count > 0)
-            {
-                this.dd_Packs.SelectedIndex = -1;
-                if (e.NewValue is PackTracker.History history1)
-                {
-                    this.dd_Packs.SelectedItem = history1.Last().Id;
-                }
-                else
-                {
-                    this.dd_Packs.SelectedIndex = 0;
-                }
-            }
         }
-
         private void DropDown_NewEntry(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)

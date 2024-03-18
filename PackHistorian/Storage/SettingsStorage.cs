@@ -44,11 +44,6 @@ namespace PackTracker.Storage
                     {
                         Settings.Update = update;
                     }
-
-                    if (bool.TryParse(Root.SelectSingleNode("showuntracked")?.InnerText, out var showuntracked))
-                    {
-                        Settings.ShowUntracked = showuntracked;
-                    }
                 }
             }
 

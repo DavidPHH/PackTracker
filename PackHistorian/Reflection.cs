@@ -111,8 +111,7 @@ namespace PackTracker
         // For HearthMirror
         public static object HearthMirrorGet(this object item, string name)
         {
-            return item.ValueOf<IEnumerable<KeyValuePair<string, object>>>("Fields")
-                .FirstOrDefault(kvp => kvp.Key == name).Value;
+            return ((dynamic) item)[name];
         }
     }
 }
