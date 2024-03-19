@@ -2,6 +2,7 @@
   "1": "Classic",
   "9": "GvG",
   "10": "TGT",
+  "11": "TOG",
   "18": "Classic",
   "19": "MSG",
   "20": "UNG",
@@ -28,5 +29,6 @@
   "821": "MLK",
   "854": "FoL",
   "894": "CoT",
-  "922": "Badlands"
+  "922": "Badlands",
+  "933": "Whizbang"
 }
