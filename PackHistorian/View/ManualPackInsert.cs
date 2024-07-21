@@ -80,7 +80,7 @@ namespace PackTracker.View
 
         private readonly Dictionary<int, List<HDTCard>> _setsCache = new Dictionary<int, List<HDTCard>>();
 
-        internal static readonly List<int> GoldenPacks = new List<int> { 23, 603, 643, 686, 716, 737, 841, 850, 874, 904, 921, 932, 937, 938, 939, 952 };
+        internal static readonly List<int> GoldenPacks = new List<int> { 23, 603, 643, 686, 716, 737, 841, 850, 874, 904, 921, 932, 937, 938, 939, 952, 970 };
         private static readonly Dictionary<int, Func<HearthDb.Card, bool>> _filter = new Dictionary<int, Func<HearthDb.Card, bool>>
         {
             [1] = card => card.Set == CardSet.EXPERT1,
@@ -96,7 +96,7 @@ namespace PackTracker.View
             [31] = card => card.Set == CardSet.GILNEAS,
             [38] = card => card.Set == CardSet.BOOMSDAY,
             [40] = card => card.Set == CardSet.TROLL,
-            [41] = card => card.Set == CardSet.UNGORO || card.Set == CardSet.ICECROWN || card.Set == CardSet.LOOTAPALOOZA,
+            [41] = card => card.Set is CardSet.UNGORO or CardSet.ICECROWN or CardSet.LOOTAPALOOZA,
             [49] = card => card.Set == CardSet.DALARAN,
             [128] = card => card.Set == CardSet.ULDUM,
             [347] = card => card.Set == CardSet.DRAGONS,
@@ -104,7 +104,7 @@ namespace PackTracker.View
             [465] = card => card.Set == CardSet.EXPERT1,
             [468] = card => card.Set == CardSet.SCHOLOMANCE,
             [470] = card => card.Class == CardClass.HUNTER && (int)card.Set > (int)CardSet.TROLL,
-            [498] = card => card.Set == CardSet.DALARAN || card.Set == CardSet.ULDUM || card.Set == CardSet.DRAGONS,
+            [498] = card => card.Set is CardSet.DALARAN or CardSet.ULDUM or CardSet.DRAGONS,
             [545] = card => card.Class == CardClass.MAGE && (int)card.Set > (int)CardSet.TROLL,
             [553] = card => card.Set == CardSet.THE_BARRENS,
             [602] = card => card.Set == CardSet.STORMWIND,
@@ -122,7 +122,7 @@ namespace PackTracker.View
             [643] = card => card.Set == CardSet.DARKMOON_FAIRE,
             [665] = card => card.Set == CardSet.ALTERAC_VALLEY,
             [686] = card => card.Set == CardSet.THE_BARRENS,
-            [688] = card => card.Set == CardSet.BLACK_TEMPLE || card.Set == CardSet.SCHOLOMANCE || card.Set == CardSet.DARKMOON_FAIRE,
+            [688] = card => card.Set is CardSet.BLACK_TEMPLE or CardSet.SCHOLOMANCE or CardSet.DARKMOON_FAIRE,
             [694] = card => card.Set == CardSet.THE_SUNKEN_CITY,
             [713] = _ => true, // Golden Standard, may change over time
             [713] = _ => true, // Standard, may change over time
@@ -140,11 +140,14 @@ namespace PackTracker.View
             [921] = card => card.Set == CardSet.RETURN_OF_THE_LICH_KING,
             [922] = card => card.Set == CardSet.WONDERS,
             [932] = card => card.Set == CardSet.BATTLE_OF_THE_BANDS,
+            [933] = card => card.Set == CardSet.WHIZBANGS_WORKSHOP,
             [937] = card => card.Set == CardSet.TITANS,
-            [938] = card => card.Set == CardSet.BLACK_TEMPLE || card.Set == CardSet.SCHOLOMANCE || card.Set == CardSet.DARKMOON_FAIRE,
+            [938] = card => card.Set is CardSet.BLACK_TEMPLE or CardSet.SCHOLOMANCE or CardSet.DARKMOON_FAIRE,
             [939] = card => card.Set == CardSet.BLACK_TEMPLE,
-            [944] = card => card.Set == CardSet.WILD_WEST,
+            [944] = card => card.Set is CardSet.THE_SUNKEN_CITY or CardSet.REVENDRETH or CardSet.RETURN_OF_THE_LICH_KING or CardSet.BATTLE_OF_THE_BANDS or CardSet.TITANS,
             [952] = card => card.Set == CardSet.WONDERS,
+            [970] = card => card.Set == CardSet.WHIZBANGS_WORKSHOP,
+            [971] = card => card.Set is CardSet.BATTLE_OF_THE_BANDS or CardSet.TITANS or CardSet.WONDERS,
         };
 
         public ManualPackInsert()
